@@ -1,8 +1,2 @@
-/obj
 /bin
-/.vs
-*.csproj.user
-/appsettings.Development.json
-/appsettings.json
-/Migrations
-/Logs
+/obj
