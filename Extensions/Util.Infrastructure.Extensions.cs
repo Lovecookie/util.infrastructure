@@ -1,4 +1,5 @@
 ﻿
+using Util.Infrastructure.Jwt;
 using Util.Infrastructure.Model;
 
 namespace Util.Infrastructure.Extensions;
@@ -7,21 +8,12 @@ public static class UtilInfrastuctureExtensions
 {
 	public static IHostApplicationBuilder AddUtilInfrastructure(this IHostApplicationBuilder builder)
 	{
-		builder.AddAuthenticateJwtBearer();
-		//builder.AddDefaultJwtBearer();
+		builder.AddAuthenticateJwtBearer();		
 
-		builder.Services.AddAuthorization();
+		builder.Services.AddAuthorization();		
 
 		return builder;
-	}
-
-	private static void AddDefaultJwtBearer(this IHostApplicationBuilder builder)
-	{
-		builder.Services.AddAuthentication()
-			.AddJwtBearer()
-			.AddJwtBearer("LocalAuthIssuer");		
-	}
-
+	}	
 
 	private static void AddAuthenticateJwtBearer(this IHostApplicationBuilder builder)
 	{

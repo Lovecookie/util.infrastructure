@@ -35,22 +35,22 @@ public class TOptional<TValue>
     /// </summary>
     public TValue? Value { get; private set; }
 
-    public string ErrorMessage { get; private set; }
+    public string Message { get; private set; }
 
     public TOptional()
     {
-        ErrorMessage = "unknown error.";
+        Message = "unknown error.";
     }
 
     public TOptional(string msg)
     {
-        ErrorMessage = msg;
+        Message = msg;
     }
 
     public TOptional(TValue value)
     {
         Value = value;
-        ErrorMessage = string.Empty;
+        Message = string.Empty;
     }
 
     public override bool Equals(object? obj)
@@ -78,10 +78,5 @@ public class TOptional<TValue>
         }
 
         return HasValue == other.HasValue;
-    }
-
-    /// <summary>
-    /// static
-    /// </summary>
-    public static TOptional<TValue> Unknown => new TOptional<TValue>();
+    }  
 }
