@@ -1,6 +1,5 @@
 ﻿
-using Util.Infrastructure.Jwt;
-using Util.Infrastructure.Model;
+using Util.Infrastructure.Auth;
 
 namespace Util.Infrastructure.Extensions;
 
