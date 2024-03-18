@@ -1,9 +1,8 @@
 ﻿namespace Util.Infrastructure;
 
-
 public class TOptional
 {
-    public static TOptional<TValue> To<TValue>(TValue val)
+    public static TOptional<TValue> Success<TValue>(TValue val)
     {
         return new TOptional<TValue>(val);
     }
@@ -43,7 +42,7 @@ public class TOptional<TValue>
     }
 
     public TOptional(string msg)
-    {
+    {        
         Message = msg;
     }
 
@@ -79,4 +78,28 @@ public class TOptional<TValue>
 
         return HasValue == other.HasValue;
     }  
+}
+
+
+public class OptBool : TOptional<bool>
+{
+    public new bool HasValue => Value;
+
+    public OptBool(string msg) : base(msg)
+    {
+	}
+
+    public OptBool(bool value) : base(value)
+    {
+    }
+
+    public static OptBool Error(string msg)
+    {
+		return new OptBool(msg);
+	}
+
+    public static OptBool Success()
+    {
+		return new OptBool(true);
+	}   
 }
