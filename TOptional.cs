@@ -29,31 +29,39 @@ public class TOptional
 
 public class TOptional<TValue>
 {
-    /// <summary>
-    /// member
-    /// </summary>
-    public TValue? Value { get; private set; }
+	public TValue? Value { get; init; }
 
-    public string Message { get; private set; }
+	public bool HasValue { get; init; }
+
+	public string Message { get; init; }
+    
 
     public TOptional()
     {
+        HasValue = false;
         Message = "unknown error.";
     }
 
     public TOptional(string msg)
-    {        
+    {   
+        HasValue = false;
         Message = msg;
     }
 
     public TOptional(TValue value)
-    {
+    {   
         Value = value;
-        Message = string.Empty;
+		HasValue = true;
+		Message = string.Empty;
     }
 
     public override bool Equals(object? obj)
     {
+        if(obj == null)
+        {
+            return false;
+        }
+
         if (obj is TOptional<TValue>)
         {
             return Equals((TOptional<TValue>)obj);
@@ -67,8 +75,6 @@ public class TOptional<TValue>
         return HashCode.Combine(Value);
     }
 
-    public bool HasValue => Value != null;
-
     public bool Equals(TOptional<TValue> other)
     {
         if (HasValue && other.HasValue)
@@ -78,28 +84,4 @@ public class TOptional<TValue>
 
         return HasValue == other.HasValue;
     }  
-}
-
-
-public class OptBool : TOptional<bool>
-{
-    public new bool HasValue => Value;
-
-    public OptBool(string msg) : base(msg)
-    {
-	}
-
-    public OptBool(bool value) : base(value)
-    {
-    }
-
-    public static OptBool Error(string msg)
-    {
-		return new OptBool(msg);
-	}
-
-    public static OptBool Success()
-    {
-		return new OptBool(true);
-	}   
 }
