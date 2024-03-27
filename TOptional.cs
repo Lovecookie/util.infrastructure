@@ -1,4 +1,6 @@
-﻿namespace Util.Infrastructure;
+﻿using Microsoft.AspNetCore.Routing.Template;
+
+namespace Util.Infrastructure;
 
 public class TOptional
 {
@@ -25,6 +27,11 @@ public class TOptional
     {
         return new TOptional<TValue>(msg);
     }
+
+    public static TOptional<TValue> Error<TValue>(Int32 code)
+    {
+		return new TOptional<TValue>(code);
+	}
 }
 
 public class TOptional<TValue>
@@ -34,6 +41,8 @@ public class TOptional<TValue>
 	public bool HasValue { get; init; }
 
 	public string Message { get; init; }
+
+    public Int32? Code { get; init; }
     
 
     public TOptional()
@@ -46,6 +55,13 @@ public class TOptional<TValue>
     {   
         HasValue = false;
         Message = msg;
+    }
+
+    public TOptional(Int32 code)
+    {
+        HasValue = false;
+		Code = code;
+		Message = "";
     }
 
     public TOptional(TValue value)
