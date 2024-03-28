@@ -120,7 +120,7 @@ public class AesEncryption
 		}
 	}
 
-	public static string Decrypt(byte[] cipherText, byte[]? key = null, byte[]? iv = null)
+	public static string? Decrypt(byte[] cipherText, byte[]? key = null, byte[]? iv = null)
 	{
 		using Aes aesAlg = Aes.Create();
 		aesAlg.Key = key ?? _key;
@@ -140,7 +140,7 @@ public class AesEncryption
 		}
 	}
 
-	public static async Task<string> DecryptAsync(byte[] cipherText, byte[]? key = null, byte[]? iv = null)
+	public static async Task<string?> DecryptAsync(byte[] cipherText, byte[]? key = null, byte[]? iv = null)
 	{
 		using Aes aesAlg = Aes.Create();
 		aesAlg.Key = key ?? _key;
@@ -160,7 +160,7 @@ public class AesEncryption
 		}
 	}
 
-	public static async Task<string> DecryptAsString(string cipherText, byte[]? key = null, byte[]? iv = null)
+	public static async Task<string?> DecryptAsString(string cipherText, byte[]? key = null, byte[]? iv = null)
 	{
 		byte[] convertedText = Convert.FromBase64String(cipherText);
 
