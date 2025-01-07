@@ -4,7 +4,7 @@ namespace Util.Infrastructure;
 
 public class TOutcome
 {
-    public static TOutcome<TValue> Success<TValue>(TValue val)
+    public static TOutcome<TValue> Ok<TValue>(TValue val)
     {
         return new TOutcome<TValue>(val);
     }
@@ -23,12 +23,12 @@ public class TOutcome
         return new TOutcome<TValue>("Not found entities.");
     }
 
-    public static TOutcome<TValue> Error<TValue>(string msg)
+    public static TOutcome<TValue> Err<TValue>(string msg)
     {
         return new TOutcome<TValue>(msg);
     }
 
-    public static TOutcome<TValue> Error<TValue>(Int32 code)
+    public static TOutcome<TValue> Err<TValue>(Int32 code)
     {
 		return new TOutcome<TValue>(code);
 	}
@@ -38,7 +38,7 @@ public class TOutcome<TValue>
 {
 	public TValue? Value { get; init; }
 
-	public bool HasValue { get; init; }
+	public bool Success { get; init; }
 
 	public string Message { get; init; }
 
@@ -47,19 +47,19 @@ public class TOutcome<TValue>
 
     public TOutcome()
     {
-        HasValue = false;
+        Success = false;
         Message = "unknown error.";
     }
 
     public TOutcome(string msg)
     {   
-        HasValue = false;
+        Success = false;
         Message = msg;
     }
 
     public TOutcome(Int32 code)
     {
-        HasValue = false;
+        Success = false;
 		Code = code;
 		Message = "";
     }
@@ -67,7 +67,7 @@ public class TOutcome<TValue>
     public TOutcome(TValue value)
     {   
         Value = value;
-		HasValue = true;
+		Success = true;
 		Message = string.Empty;
     }
 
@@ -93,11 +93,11 @@ public class TOutcome<TValue>
 
     public bool Equals(TOutcome<TValue> other)
     {
-        if (HasValue && other.HasValue)
+        if (Success && other.Success)
         {
             return Equals(Value, other.Value);
         }
 
-        return HasValue == other.HasValue;
+        return Success == other.Success;
     }  
 }

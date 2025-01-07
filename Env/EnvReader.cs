@@ -14,7 +14,7 @@ public class EnvReader
     {
         if (false == File.Exists(filePath))
         {
-            return TOutcome.Error<bool>("File not found.");
+            return TOutcome.Err<bool>("File not found.");
         }
 
         foreach (var line in File.ReadAllLines(filePath))
@@ -36,7 +36,7 @@ public class EnvReader
             Environment.SetEnvironmentVariable(key, value);
         }
 
-        return TOutcome.Success(true);
+        return TOutcome.Ok(true);
     }
 
     public static IEnumerable<KeyValuePair<string, string>> LoadStream(Stream stream)
