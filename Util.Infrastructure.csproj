@@ -11,17 +11,13 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.0" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.3.0" />
     <PackageReference Include="Microsoft.IdentityModel.Validators" Version="8.3.0" />
+    <PackageReference Include="PlayFabAllSDK" Version="1.193.241122" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.3.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="3rdparty\" />
     <Folder Include="Extensions\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Microsoft.Playfab.Gaming.GSDK.CSharp">
-      <HintPath>..\..\..\NerdFor\gsdk-main\csharp\GSDK_CSharp_Standard\bin\Release\net8.0\Microsoft.Playfab.Gaming.GSDK.CSharp.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>
